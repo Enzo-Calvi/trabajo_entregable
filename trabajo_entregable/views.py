@@ -1,5 +1,5 @@
 from datetime import datetime
-from django.template import Template, Context
+from django.template import Template, Context, loader
 from django.http import HttpResponse
 
 def hello(request):
@@ -7,7 +7,7 @@ def hello(request):
     return HttpResponse("Hola Coders")
 
 def hora_actual(request):
-    hora_a = datetime.now()
+    hora_a = datetime.now() 
     return HttpResponse(f"<h1>{hora_a}</h1>")
 
 def hello_name(request, name, apellido):
@@ -34,4 +34,8 @@ def inicio(request):
     documento_a_devolver = plantilla.render(context)
 
     return HttpResponse(documento_a_devolver)
+
+def lista_familiares(request):
+    for familiar in registro_familiar:
+        return HttpResponse(f"El nombre de mi familiar es {familiar.nombre}")
 
