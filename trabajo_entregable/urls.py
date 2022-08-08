@@ -15,9 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from trabajo_entregable.coder.views import familiares
-from trabajo_entregable.views import hello, hora_actual, hello_name, calcular_nacimiento, inicio
-from coder.views import lista_familiares 
+from coder.views import familiares
+from trabajo_entregable.views import hello, hora_actual, hello_name, calcular_nacimiento, inicio 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
