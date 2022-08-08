@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from trabajo_entregable.coder.views import familiares
 from trabajo_entregable.views import hello, hora_actual, hello_name, calcular_nacimiento, inicio
 from coder.views import lista_familiares 
 
@@ -24,7 +25,7 @@ urlpatterns = [
     path("hora/", hora_actual),
     path("hello/<name>/<apellido>", hello_name),
     path("calcular_edad/<int:edad>/", calcular_nacimiento),
-    path("familiares/", lista_familiares),
+    path("familiares/", familiares),
     path("inicio/", inicio),
     
 ]

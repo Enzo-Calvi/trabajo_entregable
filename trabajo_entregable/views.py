@@ -35,7 +35,4 @@ def inicio(request):
 
     return HttpResponse(documento_a_devolver)
 
-def lista_familiares(request):
-    for familiar in registro_familiar:
-        return HttpResponse(f"El nombre de mi familiar es {familiar.nombre}")
 
