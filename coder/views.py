@@ -11,8 +11,9 @@ def familiares(request):
 
     lista_familiares_nombres = []
 
-    for registro_familiar in familiar:
+    for resgitro_familiar in familiar:
         lista_familiares_nombres.append(registro_familiar.nombre)
         
         
-    return HttpResponse(familiares.nombre)
+    return HttpResponse(familiares)
+

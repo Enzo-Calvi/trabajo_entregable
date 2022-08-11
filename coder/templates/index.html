@@ -7,6 +7,10 @@
     <title>Nuestro Primer Template</title>
 </head>
 <body>
-    
+        {%for familiares in familiar%}
+            <p>{{familiares.id}}</p>
+            <p>{{familiares.nombre}}</p>
+            <p>{{familiares.apellido}}</p>
+        {%endfor%}
 </body>
 </html>
