@@ -71,6 +71,18 @@
                 </div>
             </div>
         </section>
+        <section>
+            <h1>Formulario - Agregar Producto</h1>
+            {% if prendas.errors %}
+            <p style="color: red;"> Estan Mal Los Datos</p>
+            {% endif %}
+            <form action="" method="POST">{% csrf_token %}
+                <table>
+                    {{ prendas.as_table }}
+                </table>
+                <input type="submit" value="Enviar">
+            </form>
+        </section>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>

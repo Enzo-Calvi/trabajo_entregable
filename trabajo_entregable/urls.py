@@ -26,6 +26,7 @@ urlpatterns = [
     path("calcular_edad/<int:edad>/", calcular_nacimiento),
     path("familiares/", familiares),
     path("inicio/", inicio),
+    path("productos/", include("productos.urls")),
     path("productos/", include("productos.urls"))
     
 ]

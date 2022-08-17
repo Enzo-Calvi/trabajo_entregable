@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from productos.models import producto
 from productos.forms import formulariobusqueda
+from productos.forms import formulariodecreacion
 
 # Create your views here.
 
@@ -22,4 +23,24 @@ def index(request):
         formulario = formulariobusqueda()
         return render(request, "productos/index.html", {"productos": listado_productos, "formulario": formulario})
 
+def index(request):
 
+    if request.method == "POST":
+
+        prendas = formulariodecreacion(request.POST)
+
+        print(prendas)
+
+        if prendas.is_valid():
+            informacion = prendas.cleaned_data
+
+            camisetas = formulariodecreacion (nombre=informacion["nombre"], marca=informacion["marca"], precio=informacion["precio"])
+
+            camisetas.save()
+
+            return render(request, "productos/index.html")
+
+    else:
+        camisetas = formulariodecreacion()
+        
+    return render(request, "productos/productos.html", {"prendas": prendas})
