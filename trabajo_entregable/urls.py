@@ -27,6 +27,5 @@ urlpatterns = [
     path("familiares/", familiares),
     path("inicio/", inicio),
     path("productos/", include("productos.urls")),
-    path("productos/", include("productos.urls"))
     
 ]

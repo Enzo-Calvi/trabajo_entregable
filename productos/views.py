@@ -23,7 +23,7 @@ def index(request):
         formulario = formulariobusqueda()
         return render(request, "productos/index.html", {"productos": listado_productos, "formulario": formulario})
 
-def index(request):
+def productos(request):
 
     if request.method == "POST":
 
@@ -34,13 +34,13 @@ def index(request):
         if prendas.is_valid():
             informacion = prendas.cleaned_data
 
-            camisetas = formulariodecreacion (nombre=informacion["nombre"], marca=informacion["marca"], precio=informacion["precio"])
+            camiseta = formulariodecreacion (nombre=informacion["nombre"], marca=informacion["marca"], precio=informacion["precio"])
 
-            camisetas.save()
+            camiseta.save()
 
             return render(request, "productos/index.html")
 
     else:
-        camisetas = formulariodecreacion()
-        
+        camiseta = formulariodecreacion()
+        return render(request, "productos/productos.html", {"prendas": camiseta})
     return render(request, "productos/productos.html", {"prendas": prendas})
