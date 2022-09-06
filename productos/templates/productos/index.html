@@ -2,7 +2,7 @@
 
 {% block listado_productos %}
 
-    {% for producto in productos %}
+    {% for Zapatilla in productos %}
         <div class="col mb-5">
             <div class="card h-100">
                 <!-- Sale badge-->
@@ -13,7 +13,7 @@
                 <div class="card-body p-4">
                     <div class="text-center">
                         <!-- Product name-->
-                        <h5 class="fw-bolder">{{producto.nombre}}</h5>
+                        <h5 class="fw-bolder">{{Zapatilla.nombre}}</h5>
                         <!-- Product reviews-->
                         <div class="d-flex justify-content-center small text-warning mb-2">
                             <div class="bi-star-fill"></div>
@@ -23,7 +23,7 @@
                             <div class="bi-star-fill"></div>
                         </div>
                         <!-- Product price-->
-                        ${{producto.precio}}
+                        ${{Zapatilla.precio}}
                     </div>
                 </div>
                 <!-- Product actions-->
@@ -32,6 +32,6 @@
                 </div>
             </div>
         </div>
-    {% endfor producto in productos %}
+    {% endfor Zapatilla in productos %}
 
 {% endblock listado_productos %}

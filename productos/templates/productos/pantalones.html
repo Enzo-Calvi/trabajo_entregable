@@ -1,0 +1,21 @@
+{% extends "productos/productos.html" %}
+
+{% block titulo %}  Zapatillas {% endblock titulo %}
+
+{% block contenido %}
+
+<h1>Formulario - Agregar Producto</h1>
+
+    <form method="post">{% csrf_token %}
+
+        {{ formulario.as_p }}
+        
+        <input type="submit" value="Crear">
+    </form>}
+
+    {% for zapatilla in Zapatillas %}
+        <p style="color:blue"></p>
+    {% endfor %}
+
+
+{% endblock contenido %}

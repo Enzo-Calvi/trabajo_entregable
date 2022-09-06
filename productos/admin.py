@@ -1,8 +1,8 @@
 from django.contrib import admin
-from productos.models import producto, camisetas, pantalones
+from productos.models import Zapatilla, camisetas, pantalones
 
 # Register your models here.
-admin.site.register(producto)
+admin.site.register(Zapatilla)
 
 admin.site.register(camisetas)
 

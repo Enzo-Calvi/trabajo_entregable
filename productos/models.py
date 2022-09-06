@@ -2,11 +2,14 @@ from django.db import models
 
 # Create your models here.
 
-class producto(models.Model):
+class Zapatilla(models.Model):
 
     nombre = models.CharField(max_length=150)
     marca = models.CharField(max_length=150)
     precio = models.FloatField()
+
+def __str__(self):
+    return f"Nombre: {self.nombre} - Marca: {self.marca}"
 
 class camisetas(models.Model):
 
@@ -21,4 +24,4 @@ class pantalones(models.Model):
     precio = models.FloatField()
 
 def __str__(self):
-    return f"{self.nombre} - {self.marca}"
+    return f"Nombre: {self.nombre} - Marca: {self.marca}"
