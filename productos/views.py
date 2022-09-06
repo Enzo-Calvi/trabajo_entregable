@@ -1,9 +1,29 @@
 from django.shortcuts import render
-from productos.models import producto
+from productos.models import producto, camisetas, pantalones
 from productos.forms import formulariobusqueda
 from productos.forms import formulariodecreacion
+from django.http import HttpResponse
 
 # Create your views here.
+
+def camiseta(request):
+    camisetas = camisetas(nombre="Air Jordan", marca="Nike", precio="0000")
+    camisetas.save()
+
+    return HttpResponse("Camiseta Agregada")
+
+def zapatillas(request):
+    zapatillas = zapatillas(nombre="Air Jordan", marca="Nike", precio="0000")
+    zapatillas.save()
+
+    return HttpResponse("Camiseta Agregada")
+
+def pantalon(request):
+    pantalones = pantalones(nombre="Air Jordan", marca="Nike", precio="0000")
+    pantalones.save()
+
+    return HttpResponse("Pantalon Agregado")
+
 
 def index(request):
     
