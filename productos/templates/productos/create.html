@@ -1,0 +1,18 @@
+{% extends "productos/productos.html" %}
+
+{% block prendas %}
+
+    {% for producto in productos %}
+        <h1>Formulario - Agregar Producto</h1>
+        {% if prendas.errors %}
+        <p style="color: red;"> Estan Mal Los Datos</p>
+        {% endif %}
+        <form action="" method="POST">{% csrf_token %}
+            <table>
+                {{ prendas.as_table }}
+            </table>
+            <input type="submit" value="Enviar">
+        </form>
+    {% endfor producto in productos %}
+
+{% endblock prendas %}

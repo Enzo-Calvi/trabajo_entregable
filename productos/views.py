@@ -38,9 +38,9 @@ def productos(request):
 
             camiseta.save()
 
-            return render(request, "productos/index.html")
+            return render(request, "productos/create.html")
 
     else:
         camiseta = formulariodecreacion()
-        return render(request, "productos/productos.html", {"prendas": camiseta})
-    return render(request, "productos/productos.html", {"prendas": prendas})
+        return render(request, "productos/create.html", {"prendas": camiseta})
+    return render(request, "productos/create.html", {"prendas": prendas})

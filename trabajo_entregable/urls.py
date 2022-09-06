@@ -27,5 +27,6 @@ urlpatterns = [
     path("familiares/", familiares),
     path("inicio/", inicio),
     path("productos/", include("productos.urls")),
+    path("auth/", include("authentication.urls"))
     
 ]
