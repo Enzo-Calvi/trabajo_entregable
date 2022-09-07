@@ -25,7 +25,6 @@ urlpatterns = [
     path("hello/<name>/<apellido>", hello_name),
     path("calcular_edad/<int:edad>/", calcular_nacimiento),
     path("familiares/", familiares),
-    path("inicio/", inicio),
     path("productos/", include("productos.urls")),
     path("auth/", include("authentication.urls"))
     

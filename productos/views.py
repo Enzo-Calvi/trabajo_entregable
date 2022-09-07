@@ -43,6 +43,24 @@ def index(request):
         formulario = formulariobusqueda()
         return render(request, "productos/index.html", {"productos": listado_productos, "formulario": formulario})
 
+def lista_camisetas(request):
+    
+    listado_camisetas = camisetas.objects.all()
+
+    if request.GET.get("nombre_producto"):
+
+        formulario = formulariobusqueda(request.GET)
+
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+            listado_camisetas = listado_camisetas.filter(nombre__icontains = data["nombre_producto"])
+
+        return render(request, "productos/index.html", {"productos": listado_camisetas})
+
+    else:
+        formulario = formulariobusqueda()
+        return render(request, "productos/index.html", {"productos": listado_camisetas, "formulario": formulario})
+
 def zapatillas(request):
 
     zapatillas = Zapatilla.objects.all()
@@ -56,7 +74,7 @@ def zapatillas(request):
             "formulario": formulario
         }
 
-        return render(request, "productos/create.html", context)
+        return render(request, "productos/zapatillas.html", context)
 
     else:
         formulario = formularioZapatillas(request.POST)
@@ -74,7 +92,7 @@ def zapatillas(request):
             "formulario": formulario
         }
 
-        return render(request, "productos/create.html", context)
+        return render(request, "productos/zapatillas.html", context)
 
 def camiseta(request):
 
@@ -86,7 +104,8 @@ def camiseta(request):
 
         context = {
             "camiseta": camiseta,
-            "formulario": formulario
+            "formulario": formulario,
+            "Camiseta": camiseta
         }
 
         return render(request, "productos/camisetas.html", context)
@@ -111,22 +130,33 @@ def camiseta(request):
 
 def pantalon(request):
 
-    if request.method == "POST":
+    pantalon = pantalones.objects.all()
 
-        prendas = formularioPantalones(request.POST)
+    if request.method == "GET":
+        formulario = formularioPantalones
 
-        print(prendas)
 
-        if prendas.is_valid():
-            informacion = prendas.cleaned_data
+        context = {
+            "pantalon": pantalon,
+            "formulario": formulario
+        }
 
-            pantalones = formularioPantalones (nombre=informacion["nombre"], marca=informacion["marca"], precio=informacion["precio"])
-
-            pantalones.save()
-
-            return render(request, "productos/create.html")
+        return render(request, "productos/pantalones.html", context)
 
     else:
-        pantalones = formularioPantalones()
-        return render(request, "productos/create.html", {"prendas": pantalones})
-    return render(request, "productos/create.html", {"prendas": prendas})
+        formulario = formularioPantalones(request.POST)
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+
+            nombre = data.get("nombre")
+            marca = data.get("marca")
+            pantalon = pantalones(nombre=nombre, marca=marca)
+
+            pantalon.save
+
+        context = {
+            "pantalon": pantalon,
+            "formulario": formulario
+        }
+
+        return render(request, "productos/pantalones.html", context)
