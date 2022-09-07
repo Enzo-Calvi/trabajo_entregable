@@ -8,8 +8,8 @@ class Zapatilla(models.Model):
     marca = models.CharField(max_length=150)
     precio = models.FloatField()
 
-def __str__(self):
-    return f"Nombre: {self.nombre} - Marca: {self.marca}"
+    def __str__(self):
+        return f"Nombre: {self.nombre} - Marca: {self.marca}"
 
 class camisetas(models.Model):
 
@@ -17,11 +17,14 @@ class camisetas(models.Model):
     marca = models.CharField(max_length=150)
     precio = models.FloatField()
 
+    def __str__(self):
+        return f"Nombre: {self.nombre} - Marca: {self.marca}"
+
 class pantalones(models.Model):
 
     nombre = models.CharField(max_length=150)
     marca = models.CharField(max_length=150)
     precio = models.FloatField()
 
-def __str__(self):
-    return f"Nombre: {self.nombre} - Marca: {self.marca}"
+    def __str__(self):
+        return f"Nombre: {self.nombre} - Marca: {self.marca}"
