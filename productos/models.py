@@ -9,7 +9,7 @@ class Zapatilla(models.Model):
     precio = models.FloatField()
 
     def __str__(self):
-        return f"Nombre: {self.nombre} - Marca: {self.marca}"
+        return f"Nombre: {self.nombre} - Marca: {self.marca} - Precio: {self.precio}"
 
 class camisetas(models.Model):
 
@@ -18,7 +18,7 @@ class camisetas(models.Model):
     precio = models.FloatField()
 
     def __str__(self):
-        return f"Nombre: {self.nombre} - Marca: {self.marca}"
+        return f"Nombre: {self.nombre} - Marca: {self.marca} - Precio: {self.precio}"
 
 class pantalones(models.Model):
 
@@ -27,4 +27,4 @@ class pantalones(models.Model):
     precio = models.FloatField()
 
     def __str__(self):
-        return f"Nombre: {self.nombre} - Marca: {self.marca}"
+        return f"Nombre: {self.nombre} - Marca: {self.marca} - Precio: {self.precio}"

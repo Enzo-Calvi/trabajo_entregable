@@ -6,24 +6,6 @@ from django.http import HttpResponse
 
 # Create your views here.
 
-# def camiseta(request):
-#     camisetas = camisetas(nombre="Air Jordan", marca="Nike", precio="0000")
-#     camisetas.save()
-
-#     return HttpResponse("Camiseta Agregada")
-
-# def zapatillas(request):
-#     zapatillas = zapatillas(nombre="Air Jordan", marca="Nike", precio="0000")
-#     zapatillas.save()
-
-#     return HttpResponse("Camiseta Agregada")
-
-# def pantalon(request):
-#     pantalones = pantalones(nombre="Air Jordan", marca="Nike", precio="0000")
-#     pantalones.save()
-
-#     return HttpResponse("Pantalon Agregado")
-
 
 def index(request):
     
@@ -163,3 +145,27 @@ def pantalon(request):
         }
 
         return render(request, "productos/pantalones.html", context)
+
+def leerZapatillas(request):
+
+    zapatillas = Zapatilla.objects.all()
+
+    contexto = {"zapatillas": zapatillas}
+
+    return render (request, "productos/zapatillas.html", contexto)
+
+def leerCamisetas(request):
+
+    camiseta = camisetas.objects.all()
+
+    contexto = {"camiseta": camiseta}
+
+    return render (request, "productos/camisetas.html", contexto)
+
+def leerPantalones(request):
+
+    pantalon = pantalones.objects.all()
+
+    contexto = {"pantalon": pantalon}
+
+    return render (request, "productos/pantalones.html", contexto)
