@@ -83,9 +83,10 @@ def zapatillas(request):
 
             nombre = data.get("nombre")
             marca = data.get("marca")
-            zapatilla = Zapatilla(nombre=nombre, marca=marca)
+            precio = data.get("precio")
+            zapatilla = Zapatilla(nombre=nombre, marca=marca, precio=precio)
 
-            zapatilla.save
+            zapatilla.save()
 
         context = {
             "zapatillas": zapatillas,
@@ -117,9 +118,10 @@ def camiseta(request):
 
             nombre = data.get("nombre")
             marca = data.get("marca")
-            camiseta = camisetas(nombre=nombre, marca=marca)
+            precio = data.get("precio")
+            camiseta = camisetas(nombre=nombre, marca=marca, precio=precio)
 
-            camiseta.save
+            camiseta.save()
 
         context = {
             "camiseta": camiseta,
@@ -150,9 +152,10 @@ def pantalon(request):
 
             nombre = data.get("nombre")
             marca = data.get("marca")
-            pantalon = pantalones(nombre=nombre, marca=marca)
+            precio = data.get("precio")
+            pantalon = pantalones(nombre=nombre, marca=marca, precio=precio)
 
-            pantalon.save
+            pantalon.save()
 
         context = {
             "pantalon": pantalon,
