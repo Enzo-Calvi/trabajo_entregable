@@ -1,5 +1,5 @@
-from multiprocessing import context
-from django.shortcuts import render
+
+from django.shortcuts import render, redirect
 from productos.models import Zapatilla, camisetas, pantalones
 from productos.forms import formularioCamisetas, formularioPantalones, formularioZapatillas, formulariobusqueda
 from django.http import HttpResponse
@@ -70,6 +70,7 @@ def zapatillas(request):
 
             zapatilla.save()
 
+        formulario = formularioZapatillas()
         context = {
             "zapatillas": zapatillas,
             "formulario": formulario
@@ -88,7 +89,6 @@ def camiseta(request):
         context = {
             "camiseta": camiseta,
             "formulario": formulario,
-            "Camiseta": camiseta
         }
 
         return render(request, "productos/camisetas.html", context)
@@ -105,6 +105,7 @@ def camiseta(request):
 
             camiseta.save()
 
+        formulario = formularioCamisetas()
         context = {
             "camiseta": camiseta,
             "formulario": formulario
@@ -139,6 +140,7 @@ def pantalon(request):
 
             pantalon.save()
 
+        formulario = formularioPantalones()
         context = {
             "pantalon": pantalon,
             "formulario": formulario
@@ -169,3 +171,123 @@ def leerPantalones(request):
     contexto = {"pantalon": pantalon}
 
     return render (request, "productos/pantalones.html", contexto)
+
+def eliminarZapatillas(request, id_zapatilla):
+
+    try:
+        zapatilla = Zapatilla.objects.get(id=id_zapatilla)
+        
+        zapatilla.delete()
+
+        return redirect("zapatillas")
+    except:
+        return redirect("zapatillas")
+
+def eliminarCamisetas(request, id_camiseta):
+
+    try:
+        camiseta = camisetas.objects.get(id=id_camiseta)
+        
+        camiseta.delete()
+
+        return redirect("camisetas")
+    except:
+        return redirect("camisetas")
+
+def eliminarPantalones(request, id_pantalon):
+
+    try:
+        pantalon = pantalones.objects.get(id=id_pantalon)
+        
+        pantalon.delete()
+
+        return redirect("pantalones")
+    except:
+        return redirect("pantalones")
+
+def actualizarZapatillas(request, id_zapatilla):
+
+    if request.method == "GET":
+        formulario = formularioZapatillas()
+        contexto = {
+            "formulario": formulario
+        }
+    
+        return render(request, "productos/zapatillas.html", contexto)
+
+    else: 
+        formulario = formularioZapatillas(request.POST)
+
+        if formulario.is_valid(): 
+            data = formulario.cleaned_data
+            
+            try:
+                zapatilla = Zapatilla.objects.get(id=id_zapatilla)
+
+                zapatilla.nombre = data.get("nombre")
+                zapatilla.marca = data.get("marca")
+                zapatilla.precio = data.get("precio")
+                zapatilla.save()
+
+            except:
+                return HttpResponse("Error en la Actualizacion")
+
+        return redirect("zapatillas")
+
+def actualizarCamisetas(request, id_camisetas):
+
+    if request.method == "GET":
+        formulario = formularioCamisetas()
+        contexto = {
+            "formulario": formulario
+        }
+    
+        return render(request, "productos/camisetas.html", contexto)
+
+    else: 
+        formulario = formularioCamisetas(request.POST)
+
+        if formulario.is_valid(): 
+            data = formulario.cleaned_data
+            
+            try:
+                camiseta = camisetas.objects.get(id=id_camisetas)
+
+                camiseta.nombre = data.get("nombre")
+                camiseta.marca = data.get("marca")
+                camiseta.precio = data.get("precio")
+                camiseta.save()
+
+            except:
+                return HttpResponse("Error en la Actualizacion")
+
+        return redirect("camisetas")
+
+def actualizarPantalones(request, id_pantalones):
+
+    if request.method == "GET":
+        formulario = formularioPantalones()
+        contexto = {
+            "formulario": formulario
+        }
+    
+        return render(request, "productos/pantalones.html", contexto)
+
+    else: 
+        formulario = formularioPantalones(request.POST)
+
+        if formulario.is_valid(): 
+            data = formulario.cleaned_data
+            
+            try:
+                pantalon = pantalones.objects.get(id=id_pantalones)
+
+                pantalon.nombre = data.get("nombre")
+                pantalon.marca = data.get("marca")
+                pantalon.precio = data.get("precio")
+                pantalon.save()
+
+            except:
+                return HttpResponse("Error en la Actualizacion")
+
+        return redirect("pantalones")

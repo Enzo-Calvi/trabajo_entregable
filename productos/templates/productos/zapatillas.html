@@ -58,7 +58,8 @@
                 </form>
 
                 {% for p in zapatillas %}
-                    <li>{{p}}</li>
+                    <li>{{p}}</li> <a href="{%url 'EliminarZapatillas' p.id %}">Eliminar</a>
+                    <a href="{%url 'EditarZapatillas' p.id %}">Editar</a>
                 {% endfor %}
 
         <!-- Footer-->
