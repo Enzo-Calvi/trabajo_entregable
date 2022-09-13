@@ -4,6 +4,8 @@ from django.http import HttpResponse
 # Formularios para crear sesion o crear usuarios.
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
+from authentication.forms import UserRegister
+
 # Funciones para autenticar e iniciar sesion.
 from django.contrib.auth import login, authenticate, logout
 
@@ -28,11 +30,11 @@ def login_view(request):
 
 def register_view(request):
     if request.method == "GET":
-        formulario = UserCreationForm()
+        formulario = UserRegister()
         return render(request, "authentication/register.html", {"form": formulario})
     
     else:
-        formulario = UserCreationForm(request.POST)
+        formulario = UserRegister(request.POST)
 
         if formulario.is_valid():
             formulario.save()
