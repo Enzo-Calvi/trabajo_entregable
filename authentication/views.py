@@ -9,6 +9,7 @@ from authentication.forms import UserRegister
 # Funciones para autenticar e iniciar sesion.
 from django.contrib.auth import login, authenticate, logout
 
+
 def login_view(request):
 
     if request.method == "GET":

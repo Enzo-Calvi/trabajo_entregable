@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from productos.models import Zapatilla, camisetas, pantalones
 from productos.forms import formularioCamisetas, formularioPantalones, formularioZapatillas, formulariobusqueda
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -43,6 +44,7 @@ def lista_camisetas(request):
         formulario = formulariobusqueda()
         return render(request, "productos/index.html", {"productos": listado_camisetas, "formulario": formulario})
 
+@login_required
 def zapatillas(request):
 
     zapatillas = Zapatilla.objects.all()
@@ -78,6 +80,7 @@ def zapatillas(request):
 
         return render(request, "productos/zapatillas.html", context)
 
+@login_required
 def Camisetas(request):
 
     Camisetas = camisetas.objects.all()
@@ -113,6 +116,7 @@ def Camisetas(request):
 
         return render(request, "productos/camisetas.html", context)
 
+@login_required
 def Pantalones(request):
 
     Pantalones = pantalones.objects.all()
