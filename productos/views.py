@@ -78,16 +78,16 @@ def zapatillas(request):
 
         return render(request, "productos/zapatillas.html", context)
 
-def camiseta(request):
+def Camisetas(request):
 
-    camiseta = camisetas.objects.all()
+    Camisetas = camisetas.objects.all()
 
     if request.method == "GET":
         formulario = formularioCamisetas
 
 
         context = {
-            "camiseta": camiseta,
+            "camiseta": Camisetas,
             "formulario": formulario,
         }
 
@@ -107,22 +107,22 @@ def camiseta(request):
 
         formulario = formularioCamisetas()
         context = {
-            "camiseta": camiseta,
+            "camiseta": Camisetas,
             "formulario": formulario
         }
 
         return render(request, "productos/camisetas.html", context)
 
-def pantalon(request):
+def Pantalones(request):
 
-    pantalon = pantalones.objects.all()
+    Pantalones = pantalones.objects.all()
 
     if request.method == "GET":
         formulario = formularioPantalones
 
 
         context = {
-            "pantalon": pantalon,
+            "pantalon": Pantalones,
             "formulario": formulario
         }
 
@@ -142,7 +142,7 @@ def pantalon(request):
 
         formulario = formularioPantalones()
         context = {
-            "pantalon": pantalon,
+            "pantalon": Pantalones,
             "formulario": formulario
         }
 
