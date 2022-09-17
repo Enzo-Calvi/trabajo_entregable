@@ -17,5 +17,6 @@ urlpatterns = [
     path("camisetas/editar/<id_camisetas>", actualizarCamisetas, name="EditarCamisetas"),
     path("pantalones/editar/<id_pantalones>", actualizarPantalones, name="EditarPantalones"),
     path("edit/", editar_usuario, name="editar_usuario"),
-    path("avatar/", agregar_avatar, name="agregar_avatar")
+    path("avatar/", agregar_avatar, name="agregar_avatar"),
+    path("about/", sobremi, name="sobre_mi")
     ]

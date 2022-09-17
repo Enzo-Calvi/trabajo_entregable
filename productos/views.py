@@ -337,6 +337,15 @@ def inicio(request):
     
     return render(request, "productos/productos.html",context)
 
+@login_required
+def sobremi(request):
+
+    context = {
+        "mensaje": "Buenas, soy Enzo Calviño. Soy estudiante de Ingenieria Informatica y empeze a interesarme en la programacion despues de hacer 1 diplomatura en Ciberseguridad y otra en Desarrollo de Aplicaiones seguros en la UNSTA. Me anote en los cursos de Coder para poder aprender lo mas que pueda de este mundo."
+    }
+    
+    return render(request, "productos/about.html",context)
+
 def agregar_avatar(request):
 
     if request.method == "GET":
