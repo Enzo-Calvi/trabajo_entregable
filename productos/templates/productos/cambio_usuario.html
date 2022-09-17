@@ -48,21 +48,19 @@
                 </div>
             </div>
         </header>
-
-        <div>
-            <h1>Formulario Camisetas - Agregar Producto</h1>
-            
-                <form " method="post">{% csrf_token %}
-            
-                    {{ formulario.as_p }}
+    
+            <h1>Editando Usuario: {{request.user.username}}</h1>
+            {% block contenido %}
+                <form method="post">{% csrf_token %}
                     
-                    <input type="submit" value="Crear">
+                    {{ form.as_p }}
+                    <input type="submit" value="Editar">
                 </form>
+            {% endblock %}
+            </div>
 
-                {% for p in camiseta %}
-                    <li>{{p}}</li> <a href="{%url 'EliminarCamisetas' p.id %}">Eliminar</a>
-                    <a href="{%url 'EditarCamisetas' p.id %}">Editar</a>
-                {% endfor %}
+            <a class="btn btn-primary" href="/productos/avatar">Agrega tu Avatar</a>
+            
 
         <!-- Footer-->
         <footer class="py-5 bg-dark">

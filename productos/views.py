@@ -1,9 +1,15 @@
 
+from multiprocessing import context
 from django.shortcuts import render, redirect
 from productos.models import Zapatilla, camisetas, pantalones
 from productos.forms import formularioCamisetas, formularioPantalones, formularioZapatillas, formulariobusqueda
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from authentication.models import Avatar
+from authentication.forms import UserEditForm, AvatarForm
+from django.contrib.auth.models import User
+
 
 # Create your views here.
 
@@ -295,3 +301,57 @@ def actualizarPantalones(request, id_pantalones):
                 return HttpResponse("Error en la Actualizacion")
 
         return redirect("pantalones")
+
+@login_required
+def editar_usuario(request):
+
+    if request.method == "GET":
+        form = UserEditForm(initial={"email": request.user.email, "username": request.user.username, "password1":"", "password2":""})
+        return render(request, "productos/cambio_usuario.html", {"form": form})
+    else:
+        form = UserEditForm(request.POST)
+
+        if form.is_valid():
+            data = form.cleaned_data
+
+            usuario = request.user
+            usuario.email = data["email"]
+            usuario.password1 = data["password1"]
+            usuario.password2 = data["password2"]
+            usuario.first_name = data["first_name"]
+            usuario.last_name = data["last_name"]
+
+            usuario.save()
+            return redirect("productos_inicio")
+        else:
+            return render(request, "productos/cambio_usuario.html", {"form": form})
+
+@login_required
+def inicio(request):
+
+    avatar = Avatar.objects.filter(usuario=request.user).first()
+
+    context = {
+        "imagen": avatar.imagen.url
+    }
+    
+    return render(request, "productos/productos.html",context)
+
+def agregar_avatar(request):
+
+    if request.method == "GET":
+        form = AvatarForm()
+        contexto = {"form":form}
+        return render(request, "productos/agregar_avatar.html", contexto)
+    else:
+        form = AvatarForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            data = form.cleaned_data
+
+            usuario = User.objects.filter(username = request.user.username).first()
+            avatar = Avatar(usuario = usuario, imagen = data["imagen"])
+
+            avatar.save()
+
+            return redirect("productos_inicio",)

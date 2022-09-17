@@ -18,3 +18,4 @@ class formularioCamisetas(Form):
     nombre = CharField(max_length=150)
     marca = CharField(max_length=150)
     precio = FloatField()
+

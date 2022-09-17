@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from coder.views import familiares
 from trabajo_entregable.views import hello, hora_actual, hello_name, calcular_nacimiento, inicio 
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,3 +31,5 @@ urlpatterns = [
     path("auth/", include("authentication.urls"))
     
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

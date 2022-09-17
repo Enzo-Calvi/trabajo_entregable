@@ -23,7 +23,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/productos/">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Sobre Mi</a></li>
                         {% if request.user.username %}
                         <li class="nav-item dropdown">
@@ -34,13 +34,21 @@
                                 <li><a class="dropdown-item" href="/productos/pantalones/">Pantalones</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item"><a class="nav-link" href="/productos/edit">Perfil</a></li>
                         <a class="btn btn-primary" href="/auth/logout"> Logout </a>
+
                         {% else %}
                         <li class="nav-item"><a class="btn btn-primary" href="/auth/login"> Login </a></li>
                         {% endif %}
                     </ul>
                 </div>
             </div>
+            {% if request.user.username %}
+                <div class="container text-center">
+                    <p>Buenas {{request.user.first_name}}</p>
+                    
+                </div>
+            {% endif %}
         </nav>
         <!-- Header-->
         <header class="bg-dark py-5">
@@ -54,6 +62,9 @@
             <h2>
                 {{ request.user.username}}
             </h2>
+        <div>
+            <img src="{{imagen}}" width="100" height="100" alt="Avatar">
+        </div>
         <div>
             <form method="get">
                 {{ formulario.as_p }}
